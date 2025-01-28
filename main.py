@@ -138,28 +138,28 @@ async def check_card(card_info, charge_amount):
     elapsed_time = round(time.time() - time.time(), 2)
 
     if '"status": "succeeded"' in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
         resp = f"Charged {charge_amount}$🔥"
     elif '"cvc_check": "pass"' in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
         resp = "CVV Live✅"
     elif "insufficient_funds" in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
         resp = "Insufficient funds 💰"
     elif '"code": "incorrect_cvc"' in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
-        resp = "CCN CHARGE {charge_amount}$ 🔥"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
+        resp = "CCN CHARGE 💥"
     elif "transaction_not_allowed" in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
         resp = "Card Doesn't Support Purchase ❎"
     elif "authentication_required" in charges or "card_error_authentication_required" in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎"
-        resp = "3D Secured❎"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
+        resp = "3D Secured / OTP Required 💤"
     elif "requires_action" in charges or '"status": "requires_action"' in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎"
-        resp = "3D Secured❎"
+        status = "𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"
+        resp = "3D Secured 💤"
     elif '"code": "rate_limit"' in charges:
-        status = "Rate Limit ⚠️"
+        status = "𝗥𝗮𝘁𝗲 𝗟𝗶𝗺𝗶𝘁 ⚠️"
         resp = "Request rate limit exceeded"
     elif "generic_decline" in charges:
         status = "Declined ❌"
@@ -171,43 +171,43 @@ async def check_card(card_info, charge_amount):
         status = "Declined ❌"
         resp = "Do Not Honor"
     elif "invalid_expiry_month" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The card expiration date provided is invalid."
     elif "invalid_account" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The account linked to the card is invalid."
     elif "lost_card" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The card has been reported as lost and the transaction was declined."
     elif "stolen_card" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The card has been reported as stolen and the transaction was declined."
     elif "pickup_card" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Pickup Card"
     elif "Your card has expired." in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Expired Card"
     elif "card_decline_rate_limit_exceeded" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Rate limit"
     elif '"code": "processing_error"' in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Processing error"
     elif '"message": "Your card number is incorrect."' in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Your card number is incorrect."
     elif "incorrect_number" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Card number is invalid."
     elif "testmode_charges_only" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The SK key is in test mode or invalid. Please use a valid key."
     elif "api_key_expired" in charges:
-        status = "Declined ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "The API key used for the transaction has expired."
     elif "parameter_invalid_empty" in charges:
-        status = "𝗗𝗲𝗰𝗹𝗶𝗻𝗲𝗱 ❌"
+        status = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 ❌"
         resp = "Please enter valid card details to check."
     else:
         status = f"{charge_error}"
@@ -243,7 +243,7 @@ async def monitor_groups(client, message: Message):
     status, result_message = await check_card(card_info, DEFAULT_AMOUNT)
 
     # Send approved/live cards to the target group
-    if status in ["𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅", "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎", "CVV Live✅"]:
+    if status in ["𝐀𝐩𝐩𝐫𝐨𝐯𝐞𝐝 ✅"]:
         try:
             await app.send_message(
                 TARGET_CHAT_ID,
