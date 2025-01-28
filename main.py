@@ -141,14 +141,14 @@ async def check_card(card_info, charge_amount):
         status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
         resp = f"Charged {charge_amount}$🔥"
     elif '"cvc_check": "pass"' in charges:
-        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎"
+        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
         resp = "CVV Live✅"
     elif "insufficient_funds" in charges:
         status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
         resp = "Insufficient funds 💰"
     elif '"code": "incorrect_cvc"' in charges:
-        status = "𝗖𝗖𝗡 𝗟𝗶𝘃𝗲 ❎"
-        resp = "Your card's security code is incorrect."
+        status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ✅"
+        resp = "CCN CHARGE {charge_amount}$ 🔥"
     elif "transaction_not_allowed" in charges:
         status = "𝗔𝗽𝗽𝗿𝗼𝘃𝗲𝗱 ❎"
         resp = "Card Doesn't Support Purchase ❎"
